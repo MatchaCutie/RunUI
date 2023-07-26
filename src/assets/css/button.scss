@@ -1,0 +1,121 @@
+@mixin button-plain($color) {
+  color: $color;
+  background: mix(#fff, $color, 90%);
+  border-color: mix(#fff, $color, 60%);
+
+  &:hover,
+  &:focus {
+    background: $color;
+    border-color: $color;
+    color: #fff;
+  }
+
+  &:active {
+    background: mix(#000000, $color, 10%);
+    border-color: mix(#000000, $color, 10%);
+    color: #fff;
+    outline: none;
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: mix(#fff, $color, 40%);
+      background-color: mix(#fff, $color, 90%);
+      border-color: mix(#fff, $color, 80%);
+    }
+  }
+}
+
+@mixin button-variant($color, $background-color, $border-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
+
+  &:hover,
+  &:focus {
+    background: mix(#fff, $background-color, 20%);
+    border-color: mix(#fff, $border-color, 20%);
+    color: $color;
+  }
+  
+  &:active {
+    background: mix(#000000, $background-color, 10%);
+    border-color: mix(#000000, $border-color, 10%);
+    color: $color;
+    outline: none;
+  }
+
+  &.is-active {
+    background: mix(#000000, $background-color, 10%);
+    border-color: mix(#000000, $border-color, 10%);
+    color: $color;
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: #fff;
+      background-color: mix($background-color, #fff);
+      border-color: mix($border-color, #fff);
+    }
+  }
+
+  &.is-plain {
+    @include button-plain($background-color);
+  }
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  @include when(round) {
+    padding: $padding-vertical $padding-horizontal;
+  }
+  @include when(circle) {
+    padding: $padding-horizontal;
+    border-radius: 50%;
+  }
+}
+
+@mixin button-text($color) {
+  color: $color;
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+    border-color: transparent;
+    color: $color;
+  }
+  
+  &:active {
+    background: transparent;
+    border-color: transparent;
+    color: $color;
+    outline: none;
+  }
+
+  &.is-active {
+    background: transparent;
+    border-color: transparent;
+    color: $color;
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: mix($color, #fff);
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+}
